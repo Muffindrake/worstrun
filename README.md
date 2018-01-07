@@ -1,6 +1,6 @@
 # worstrun
 
-![preview](https://i.imgur.com/rTdwtOy.png)
+![preview](https://i.imgur.com/qIKIC35.png)
 
 This is a minimal split tracker for terminals supported by ncurses.
 
