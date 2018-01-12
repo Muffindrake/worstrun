@@ -24,4 +24,4 @@ clean:
 
 .PHONY: install
 install: all
-	install -m 0755 cttv $(prefix)/bin
+	install -m 0755 wr $(prefix)/bin
