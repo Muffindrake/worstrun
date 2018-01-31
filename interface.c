@@ -80,17 +80,15 @@ check_min_size(void)
 
         while (1) {
                 max_y = getmaxy(stdscr);
-                if (max_y < min_size()) {
-                        clear();
-                        printw("Your terminal must be at least %d rows tall, "
-                                        "currently %d.\n",
-                                        min_size(),
-                                        max_y);
-                        refresh();
-                        while (wgetch(w_stat) != KEY_RESIZE);
-                        continue;
-                }
-                break;
+                if (max_y >= min_size())
+                        break;
+                clear();
+                printw("Your terminal must be at least %d rows tall, "
+                                "currently %d.\n",
+                                min_size(),
+                                max_y);
+                refresh();
+                while (wgetch(w_stat) != KEY_RESIZE);
         }
 }
 
@@ -329,7 +327,6 @@ start:
                 redraw_all(wr);
                 refresh_eff();
                 wtimeout(w_stat, -1);
-                break;
         }
 
         rfr = handle_scrolling(wr, ch);
@@ -369,7 +366,7 @@ start:
 		doupdate();
                 goto start;
         case RUN_TOGGLE_K:
-                goto abrt;
+                break;
         case RUN_PAUSE_TOGGLE_K:
                 loop_pause(wr, TIMEOUT_RUN);
                 goto lr_def;
@@ -394,6 +391,7 @@ lr_def: default:
         wtimeout(w_stat, -1);
         draw_stat(w_stat, IDLE_PROMPT);
         return;
+
 finish:
         wtimeout(w_stat, -1);
         if (wr->time.cur < wr->time.record)
@@ -409,9 +407,6 @@ finish:
         wnoutrefresh(w_stat);
         refresh_eff();
         return;
-abrt:
-        wtimeout(w_stat, -1);
-        draw_stat(w_stat, IDLE_PROMPT);
 }
 
 void
