@@ -66,7 +66,7 @@ reset_windows(void)
                 delwin(w_stat);
         }
         w_top = newwin(TOP_HEIGHT, 0, 0, 0);
-        w_split = newwin(max_y - (TOP_HEIGHT + BOT_HEIGHT + 1), 0, TOP_HEIGHT, 
+        w_split = newwin(max_y - (TOP_HEIGHT + BOT_HEIGHT + 1), 0, TOP_HEIGHT,
                         0);
         w_bot = newwin(BOT_HEIGHT, 0, max_y - BOT_HEIGHT - STATUS_HEIGHT, 0);
         w_stat = newwin(STATUS_HEIGHT, 0, max_y - STATUS_HEIGHT, 0);
@@ -155,7 +155,7 @@ draw_splits(WINDOW *w, struct split *slt, size_t sz, size_t cur)
                         wmove(w, y, 0);
                         waddstr(w, slt[i].desc);
                 }
-                
+
                 wmove(w, y, max_x - (int) strl >= 0 ? max_x - (int) strl : 0);
                 waddstr(w, tbuf);
                 wattroff(w, i == cur ? A_BOLD | A_REVERSE : A_BOLD);
@@ -378,7 +378,7 @@ start:
                 wnoutrefresh(w_bot);
                 /* fallthrough */
 lr_def: default:
-                wr->time.cur = delay_time(wr->time.init, wr->time.delay, 
+                wr->time.cur = delay_time(wr->time.init, wr->time.delay,
                                 cur_time());
 		draw_timer(w_top, wr);
                 wnoutrefresh(w_top);
