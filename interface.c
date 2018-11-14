@@ -46,10 +46,10 @@ min_size(void)
 void
 clear_all(void)
 {
-        wclear(w_top);
-        wclear(w_split);
-        wclear(w_bot);
-        wclear(w_stat);
+        werase(w_top);
+        werase(w_split);
+        werase(w_bot);
+        werase(w_stat);
 }
 
 void
@@ -199,7 +199,7 @@ draw_info(WINDOW *w, struct wr_t *wr)
 void
 draw_stat(WINDOW *w, const char *s)
 {
-        wclear(w);
+        werase(w);
         waddstr(w, s);
         wrefresh(w);
 }
@@ -273,7 +273,7 @@ handle_scrolling(struct wr_t *wr, int ch)
         if ((size_t) max_y < wr->gap_sz)
                 rdw = 1;
         if (rdw) {
-                wclear(w_split);
+                werase(w_split);
                 draw_splits(w_split, wr->gap, wr->gap_sz, wr->cur_split);
         }
         return rdw;
@@ -356,7 +356,7 @@ start:
         case MAKE_SPLIT_K:
                 if (make_split(wr))
                         goto finish;
-                wclear(w_split);
+                werase(w_split);
                 draw_splits(w_split, wr->gap, wr->gap_sz, wr->cur_split);
                 wnoutrefresh(w_split);
                 wr->time.cur = delay_time(wr->time.init, wr->time.delay,
