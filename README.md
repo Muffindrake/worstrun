@@ -1,6 +1,6 @@
 # worstrun
 
-This is a minimal text-mode split tracker.
+This is a minimal text-mode timer.
 
 #### installation
 
